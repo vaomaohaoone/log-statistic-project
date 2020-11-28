@@ -1,0 +1,30 @@
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8085/eureka
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+kafka:
+  topic: file-logs
+  consumer-group-id: spark-streamer-logs
+  bootstrap-servers: 172.18.0.1:32770
+spark:
+  streaming-duration: 10
+  master: local[2]
+  executor-memory: 1g
+  driver-memory: 1g
+  driver-max-result-size: 1g
+  app-name: ${spring.application.name}
+cassandra:
+  connection-host: 127.0.0.1
+  port: 9042
+  key-space: final_project
+  table: logs
+spring:
+  application:
+    name: kafka-listener
+server:
+  port: 8083

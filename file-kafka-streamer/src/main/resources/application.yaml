@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: file-kafka-streamer
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8085/eureka
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+kafka:
+  topic: file-logs
+  producer-id: file-kafka-streamer
+  bootstrap-servers: 172.18.0.1:32770
+  start-at-beginning: true
+  sample-interval: 5000
+server:
+  port: 8082

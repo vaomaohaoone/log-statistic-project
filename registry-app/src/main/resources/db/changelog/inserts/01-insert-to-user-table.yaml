@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: 17112020-0153
+      author: Timofeev Kirill
+      comment: insert users
+      changes:
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: login
+                  value: admin
+              - column:
+                  name: password
+                  value: $2a$10$cWuqqF5j7BS2VB2TPExBTeBDKe9uWjl6cWEfWnrt20vRJqhQaYzi.
+              - column:
+                  name: role
+                  value: ADMIN
+      rollback:
+        - delete:
+            tableNamw: user
+            where: login = 'admin'

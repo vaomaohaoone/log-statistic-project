@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - property:
+      name: tableName
+      value: file
+      global: false
+
+  - changeSet:
+      id: 19112020-0031
+      author: Timofeev Kirill
+      comment: creating table of files
+      preConditions:
+        onFail: MARK_RAN
+        onFailMessage: ${tableName} already exists
+        not:
+          tableExists:
+            tableName: ${tableName}
+      changes:
+        - createTable:
+            tableName: ${tableName}
+            remarks: table of files
+            columns:
+              - column:
+                  name: path
+                  type: VARCHAR2(500)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: is_registered
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: ${tableName}
+

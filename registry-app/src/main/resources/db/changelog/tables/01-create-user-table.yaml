@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - property:
+      name: tableName
+      value: user
+      global: false
+
+  - changeSet:
+      id: 17112020-0102
+      author: Timofeev Kirill
+      comment: creating table of users
+      preConditions:
+        onFail: MARK_RAN
+        onFailMessage: ${tableName} already exists
+        not:
+          tableExists:
+            tableName: ${tableName}
+      changes:
+        - createTable:
+            tableName: ${tableName}
+            remarks: table of users
+            columns:
+              - column:
+                  name: login
+                  type: VARCHAR2(300)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: VARCHAR2(300)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: VARCHAR2(30)
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: ${tableName}

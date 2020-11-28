@@ -1,0 +1,49 @@
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8085/eureka
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+hystrix:
+  shareSecurityContext: true
+
+info:
+  app:
+    version: '@project.version@'
+jwt:
+  secret: vaomaohao
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
+      springframework:
+        jdbc:
+          core:
+            JdbcTemplate: DEBUG
+            StatementCreatorUtils: TRACE
+server:
+  port: 8081
+spring:
+  application:
+    name: registry
+  datasource:
+    password: qwe123
+    url: jdbc:postgresql://localhost:5432/otus
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format-sql: true
+    show-sql: true
+springdoc:
+  swagger-ui:
+    doc-expansion: none
+    operations-sorter: alpha
+    path: /swagger-ui.html
+    tags-sorter: alpha

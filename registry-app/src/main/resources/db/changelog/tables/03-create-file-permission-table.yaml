@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - property:
+      name: tableName
+      value: file_permission
+      global: false
+  - changeSet:
+      id: 19112020-0044
+      author: Timofeev Kirill
+      comment: creating table of file permissions
+      preConditions:
+        onFail: MARK_RAN
+        onFailMessage: ${tableName} already exists
+        not:
+          tableExists:
+            tableName: ${tableName}
+      changes:
+        - createTable:
+            tableName: ${tableName}
+            remarks: table of file permissions
+            columns:
+              - column:
+                  name: file_path
+                  type: VARCHAR2(500)
+                  constraints:
+                    nullable: false
+                    foreignKey:
+                      referencedColumnNames: path
+                      referencedTableName: file
+              - column:
+                  name: user_login
+                  type: VARCHAR2(300)
+                  constraints:
+                    nullable: false
+                    foreignKey:
+                      referencedColumnNames: login
+                      referencedTableName: user
+              - column:
+                  name: role
+                  type: VARCHAR2(100)
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            columnNames: file_path, user_login
+            tableName: ${tableName}
+      rollback:
+        - dropTable:
+            tableName: ${tableName}
