@@ -24,6 +24,9 @@
         <spark.cassandra.version>1.5.2</spark.cassandra.version>
         <metrics.core.version>3.2.2</metrics.core.version>
         <spring-cloud.version>2020.0.0-SNAPSHOT</spring-cloud.version>
+        <spring-cloud.additions.version>2.2.0.RC2</spring-cloud.additions.version>
+        <cassandra-driver-core.version>3.0.0</cassandra-driver-core.version>
+        <janino.version>3.0.8</janino.version>
     </properties>
 
     <modules>

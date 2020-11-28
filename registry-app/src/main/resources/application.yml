@@ -9,6 +9,12 @@ eureka:
     prefer-ip-address: true
 hystrix:
   shareSecurityContext: true
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000
 
 info:
   app:

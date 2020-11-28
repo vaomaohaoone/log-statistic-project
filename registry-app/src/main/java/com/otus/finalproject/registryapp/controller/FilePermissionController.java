@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +17,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static com.otus.finalproject.registryapp.util.CheckerThrowable.checkThrowable;
-
 @RestController
 @RequestMapping("/permission")
 @RequiredArgsConstructor
+@Slf4j
 @Tag(name = "file-permission-controller", description = "Контроллер управления доступа к файлам")
 public class FilePermissionController {
 
@@ -52,17 +52,17 @@ public class FilePermissionController {
         filePermissionService.removeFilePermission(filePermissionBody);
     }
 
-    ResponseEntity<List<FilePermission>> handleGetAllowedFilePermissions(Throwable throwable) {
-        checkThrowable(throwable);
+    public ResponseEntity<List<FilePermission>> handleGetAllowedFilePermissions() {
+        log.error("Cannot get any file permissions");
         return ResponseEntity.ok(Collections.emptyList());
     }
 
-    ResponseEntity<FilePermission> handleSetFilePermission(Throwable throwable) {
-        checkThrowable(throwable);
+    public ResponseEntity<FilePermission> handleSetFilePermission(FilePermissionBody filePermissionBody) {
+        log.error("Cannot set file permission with body: {}", filePermissionBody);
         return ResponseEntity.of(Optional.empty());
     }
 
-    void handleRemoveFilePermission(Throwable throwable) {
-        checkThrowable(throwable);
+    public void handleRemoveFilePermission(FilePermissionBody filePermissionBody) {
+        log.error("Cannot remove file permission with body: {}", filePermissionBody);
     }
 }

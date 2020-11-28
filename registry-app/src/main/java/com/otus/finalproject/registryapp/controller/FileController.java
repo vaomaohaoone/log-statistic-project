@@ -21,8 +21,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static com.otus.finalproject.registryapp.util.CheckerThrowable.checkThrowable;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/file")
@@ -75,27 +73,27 @@ public class FileController {
         return ResponseEntity.ok(fileService.getAllFiles());
     }
 
-    ResponseEntity<File> handleSaveFile(Throwable throwable) {
-        checkThrowable(throwable);
+    public ResponseEntity<File> handleSaveFile(File file, Principal principal) {
+        log.error("Cannot save the file: {}", file);
         return ResponseEntity.of(Optional.empty());
     }
 
-    ResponseEntity<List<ResultData>> handleGetStatistic(Throwable throwable) {
-        checkThrowable(throwable);
+    public ResponseEntity<List<ResultData>> handleGetStatistic(ComputeData computeData) {
+        log.error("Cannot get statistic for compute data: {}", computeData);
         return ResponseEntity.ok(Collections.emptyList());
     }
 
-    void handleDeleteFile(Throwable throwable) {
-        checkThrowable(throwable);
+    public void handleDeleteFile(String path, Principal principal) {
+        log.error("Cannot delete file with path: {}", path);
     }
 
-    HttpStatus handleStreamFile(Throwable throwable) {
-        checkThrowable(throwable);
+    public HttpStatus handleStreamFile(String path) {
+        log.error("Cannot stream file with path: {}", path);
         return HttpStatus.I_AM_A_TEAPOT;
     }
 
-    ResponseEntity<List<File>> handleGetFiles(Throwable throwable) {
-        checkThrowable(throwable);
+    public ResponseEntity<List<File>> handleGetFiles(Throwable throwable) {
+        log.error("Cannot get any files");
         return ResponseEntity.ok(Collections.emptyList());
     }
 
