@@ -1,6 +1,7 @@
 package com.otus.finalproject.registryapp.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,9 +18,11 @@ import javax.persistence.*;
 public class File {
     @Id
     @Column(name = "path")
+    @Schema(example = "/home/logs/app.log")
     private String path;
 
     @Column(name = "is_registered", insertable = false)
+    @Schema(example = "false")
     @JsonIgnore
     private Boolean isRegistered;
 }

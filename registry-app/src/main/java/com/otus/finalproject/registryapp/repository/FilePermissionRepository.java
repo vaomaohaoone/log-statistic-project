@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface FilePermissionRepository extends JpaRepository<FilePermission, FilePermissionId> {
-    Optional<FilePermission> findByFileAndUser(File file, User user);
+    Optional<FilePermission> findByFile_PathAndUser(String filePath, User user);
     List<FilePermission> findByUser_Login(String login);
     Optional<FilePermission> findByUser_LoginAndFile_Path(String login, String path);
     void deleteAllByFile_Path(String filePath);

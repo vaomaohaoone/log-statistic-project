@@ -1,2 +1,4 @@
-# log-statistic-project
-Final project spring otus course
+## Микросервисное приложение подсчёта статистики по лог-файлам  
+Финальный проект по курсу "Разработчик на spring-framework"  
+###Архитектура приложения представлена на рисунке:  
+![final-project](static/final-project.jpg)

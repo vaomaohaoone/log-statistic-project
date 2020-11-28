@@ -4,6 +4,9 @@ import com.otus.finalproject.registryapp.config.JwtTokenUtil;
 import com.otus.finalproject.registryapp.domain.data.JwtResponse;
 import com.otus.finalproject.registryapp.domain.entities.User;
 import com.otus.finalproject.registryapp.service.security.JwtUserDetailsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 @RequiredArgsConstructor
+@Tag(name = "jwt-authentication-controller", description = "Контроллер для получения jwt токена по логин/паролю")
 public class JwtAuthenticationController {
 
     private final AuthenticationManager authenticationManager;
@@ -27,7 +31,9 @@ public class JwtAuthenticationController {
     private final JwtUserDetailsService userDetailsService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody User user) throws Exception {
+    @Operation(description = "Получение токена пользователем")
+    public ResponseEntity<?> createAuthenticationToken(
+            @Parameter(description = "user-body", required = true, name = "user") @RequestBody User user) throws Exception {
         authenticate(user.getLogin(), user.getPassword());
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(user.getLogin());

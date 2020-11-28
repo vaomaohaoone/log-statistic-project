@@ -44,12 +44,12 @@ public class FileService {
     }
 
     @Transactional
-    public void deleteFileEntityWithPermissions(File file, String userName) {
+    public void deleteFileEntityWithPermissions(String filePath, String userName) {
         User user = userRepository.findById(userName).orElseThrow(() -> new RuntimeException("No such user"));
-        Optional<FilePermission> optionalFilePermission = filePermissionRepository.findByFileAndUser(file, user);
+        Optional<FilePermission> optionalFilePermission = filePermissionRepository.findByFile_PathAndUser(filePath, user);
         if (optionalFilePermission.isPresent() && optionalFilePermission.get().getRole().equals(FileRoles.CREATOR)) {
-            filePermissionRepository.deleteAllByFile_Path(file.getPath());
-            fileRepository.deleteById(file.getPath());
+            filePermissionRepository.deleteAllByFile_Path(filePath);
+            fileRepository.deleteById(filePath);
         }
     }
 
