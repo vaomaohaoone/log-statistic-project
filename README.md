@@ -1,8 +1,7 @@
-## Микросервисное приложение подсчёта статистики по лог-файлам  
-### Финальный проект по курсу "Разработчик на spring-framework"  
-#### Архитектура приложения представлена на рисунке:  
+## Microservice application for calculating statistics on log files  
+#### Architecture:  
 ![final-project](static/final-project.jpg)
-#### Пример входного формата логов:  
+#### Example of input log format:  
 {"timestamp":"2020-11-20 00:05:00","host":"localhost1","process":"root1","level":1}  
 {"timestamp":"2020-11-20 00:07:00","host":"localhost1","process":"root1","level":1}  
 {"timestamp":"2020-11-20 00:16:00","host":"localhost2","process":"root2","level":3}  
